@@ -11,3 +11,7 @@
 *.lai
 *.la
 *.a
+
+# Datafile
+*.dat
+*.data
