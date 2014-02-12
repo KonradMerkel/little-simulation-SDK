@@ -20,14 +20,21 @@ double const dt=0.001; // s
 
 // Variables
 double F; // N
+double Fr; // N
 double v; // m/s
 double t; // s
-double y_s=0.04; // m
+double y_s=0.01; // m
 
 bool simulation(double &x, double &y)
 {
-  F=-D*y_s;
-  v=v+F/m*dt;
+  Fr =0.777 * v*v;
+
+  if (v>0)
+    F=-D*y_s - Fr;
+  else 
+    F=-D*y_s + Fr;
+
+  v=v+(F/m)*dt;
   y_s=y_s+v*dt;
   t=t+dt;
   
@@ -35,7 +42,7 @@ bool simulation(double &x, double &y)
   y = y_s;
   
   // While
-  if (t<=5) {return true;}
+  if (t<=15) {return true;}
   else {return false;}
 }
 
