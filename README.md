@@ -25,7 +25,9 @@ If you want to run some simulation, you have two possibilities. The best way und
 The second way (e.g. under Windows) is to compile the simulation and run it. e.g:
 
 g++ -o sim examples/sim_paper_plane.cpp
+
 ./sim datafile
+
 gnuplot
 
 =====================
