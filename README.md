@@ -48,7 +48,7 @@ cd examples/paper_plane
 ./init_sim sim_paper_plane.cpp /tmp/datafile
 ./run_sim paper_plane.conf
 
-# to show the graph again
+to show the graph again
 ./plot_sim paper_plane.conf
 
 2. (all OS) Manual compilation way
@@ -61,7 +61,7 @@ g++ -fopenmp -o sim examples/paper_plane/sim_paper_plane.cpp
 
 ./sim datafile
 
-# declare your own gnuplot-script
+declare your own gnuplot-script
 gnuplot
 > plot “datafile”
 
