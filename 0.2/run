@@ -1,0 +1,23 @@
+#!/bin/bash
+# This is a bash-script to run the simulation user friendly
+# Please notice, that this script is only running and tested on an linux OS
+
+# usage: ./run simulation_file.cpp datafile
+# e.g. : ./run sim_fly fly.dat
+
+# create and clean up the datafile 
+touch $2
+> $2
+
+# clears the screen and remove the possible existing binary file
+clear
+rm sim
+
+# compiles the simulation and runs it
+g++ -o sim $1
+./sim $2
+
+# To display the data in a diagram use gnuplot.
+# Please notice, that the following command only runs gnuplot.
+# To plot the data use: plot "datafile"
+gnuplot

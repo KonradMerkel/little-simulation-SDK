@@ -1,0 +1,56 @@
+#!/bin/bash
+# This script configure and compiles a simulation
+
+if [ "$2" = "" ]; then
+  echo ""
+  echo "usage:  ./init_sim <simulation_source.cpp> <static_datafile>"
+  echo "e.g. :  ./init_sim sim_fly.cpp /tmp/fly.dat"
+  echo ""
+  exit
+fi
+
+
+echo "Welcome to the configuration and compilation script of Km-ware simulations."
+echo "This script must only run once for each simulation instance."
+echo ""
+
+source_file=$1
+data=$2
+
+echo "Please, write down the name of your simulation (no empty space)"
+read name
+
+if [ "$name" = "" ]; then
+  echo "incorrect answer!"
+  exit
+fi
+
+# write config
+touch "$name.conf"
+echo "#!/bin/bash" > "$name.conf"
+echo "name=\"$name\"" >> "$name.conf"
+echo "code_f=\"$source_file\"" >> "$name.conf"
+echo "data_f=\"$data\"" >> "$name.conf"
+
+echo "Want you to use the default plot script to plot your data? (y/n)"
+read plot
+
+if [ "$plot" = "y" ]; then
+
+  echo "Title of the diagram"
+  read title
+  echo "Color of the diagram (e.g. red)"
+  read color
+  echo "name of the x-axis"
+  read x
+  echo "name of the y-axis"
+  read y
+
+  echo "plot=true" >> "$name.conf"
+  echo "title=\"$title\"" >> "$name.conf"
+  echo "ylabel=\"$y\"" >> "$name.conf"
+  echo "xlabel=\"$x\"" >> "$name.conf"
+  echo "color=\"$color\"" >> "$name.conf"
+else
+  echo "plot=false" >> "$name.conf"
+fi

@@ -1,0 +1,37 @@
+#!/bin/bash
+# This is a bash-script to plot the simualtion-data with gnuplot
+# Please notice, that this script is only running and tested on a linux OS
+
+# usage: ./plot_data datafile
+# e.g. : ./plot_data fly.dat
+
+# ==================== load configuration ====================
+name=$1
+
+if [ "$name" = "" ]; then
+  echo ""
+  echo "usage:  ./plot_sim <config>"
+  echo "e.g. :  ./plot_sim fly.conf"
+  echo ""
+  exit
+fi
+
+source "$name"
+
+if [ $plot = false ]; then
+  echo "Please run init again and enable the plot function or edit the .conf file"
+  echo "You can also run your own gnuplot-script."
+  exit
+fi
+
+# ===================== run gnuplot =====================
+echo "[+] runing gnuplot"
+echo -e "reset; \
+ set ylabel '"$ylabel"'; \
+ set xlabel '"$xlabel"'; \
+ set autoscale; \
+ set title '"$title"'; \
+ unset key; \
+ plot '"$data_f"' lc rgb '"$color"' with line" | gnuplot -persist
+ 
+ 

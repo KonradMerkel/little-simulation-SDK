@@ -1,0 +1,18 @@
+﻿Version		Date		 Feature
+-------------------------------------------------------------------------
+0.1		13-01-15	first version of the SDK
+				less RAM usage
+				very good performance in relation to 'Moebius'
+
+0.2		13-05-27	buffer for a better data management
+				begin()-function for a better start of the simulation
+				better performance
+				more examples in the field of physics
+
+0.3		31-05-23	multithreading with openmp
+				better integration of gnuplot
+				scripts for initialization, compilation,
+				configuration and printing
+				LIVE-Mode: prints the data to screen and not in a file
+
+0.4		---		save more than two variables in the data file

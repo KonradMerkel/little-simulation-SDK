@@ -1,0 +1,19 @@
+#!/bin/bash
+cd examples/damped_oscillation/
+./run_sim damped_oscillation.conf
+
+cd ../paper_plane/
+./run_sim paper_plane.conf
+
+cd ../self_induction/
+./run_sim self_induction.conf
+
+cd ../harmonical_oscillation/
+./run_sim harmonical_oscillation.conf
+
+cd ../paper_plane_best_angle/
+./run_sim paper_plane_best_angle.conf
+
+
+  
+

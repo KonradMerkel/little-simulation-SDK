@@ -27,6 +27,7 @@ bool simulation(double &x, double &y)
   // Your program
   
   // C++ Math-help (german): http://www.willemer.de/informatik/cpp/mathlib.htm
+  // See examples in the examples directory.
   
   
   // Define what is x and y in the diagram?
@@ -40,7 +41,7 @@ bool simulation(double &x, double &y)
 
 
 
-/*################ Only 4 developer´s eyes! ################*/
+/*################ Only 4 developer's eyes! ################*/
 
 /* system */
 

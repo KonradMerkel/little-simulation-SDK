@@ -9,6 +9,7 @@ unsigned long int const buf = 131072 ;
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <omp.h>
 using namespace std;
 
 /* simulation */
@@ -19,13 +20,13 @@ struct vektor{
 };
 
 // const
-double const c_a = 0.4;
-double const c_w = 0.1;
+double const c_a = 0.55;
+double const c_w = 0.45;
 double const roh = 1.29; // kg/m³
 double const A = 0.1; // m²
 double const v_o = 2.5; // m/s
 double const m = 0.015; // kg
-double const dt = 0.01; // s
+double const dt = 0.001; // s
 double const alpha = PI / 18; // rad
 
 // Variables
@@ -117,7 +118,7 @@ int main(int argc, char* argv[])
     cout << "Usage: " << *argv[0] << " <path of datafile>\n";
     return 0;
   }
-  
+  double runtime = omp_get_wtime();
   welcome();
   begin();
   
@@ -140,7 +141,8 @@ int main(int argc, char* argv[])
     }
     writeData(myfile,buffer, i);
     myfile.close();
-    cout << "calculation loops: " << k << "\n";
+    runtime = omp_get_wtime() - runtime;
+    cout << "Calculation loops: " << k << " in " << runtime << " sec\n";
     cout << "Done! You can see the data in " << argv[1] << "\n\n";
     
   }else{

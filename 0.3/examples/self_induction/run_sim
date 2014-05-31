@@ -1,0 +1,49 @@
+#!/bin/bash
+# This is a bash-script to run the simulation user friendly
+# Please notice, that this script is only running and tested on a linux OS
+
+# usage: ./run simulation_file.cpp datafile
+# e.g. : ./run sim_fly fly.dat
+
+conf="$1"
+
+if [ "$conf" = "" ]; then
+  echo ""
+  echo "usage:  ./run_sim <config>"
+  echo "e.g. :  ./run_sim fly.conf"
+  echo ""
+  exit
+fi
+
+source "$conf"
+
+#TODO proof the config!!!
+
+if [ "$data_f" = "" ]; then
+  echo "No datafile if the configration. Please run init_sim again."
+  exit
+fi
+
+# create and clean up the datafile
+echo "[+] create and clean up the datafile"
+touch "$data_f"
+> $data_f
+
+
+# compiles the simulation
+echo "[+] compiles the simulation and runs it"
+g++ -fopenmp -o "bin_$name" $code_f
+
+# runs the binary without LIVE-Mode (default)
+./"bin_$name" $data_f
+
+# runs the binray with LIVE-Mode
+#./sim > $data_f
+
+# To display the data in a diagram use gnuplot.
+if [ $plot = true ]; then
+  ./plot_sim $conf
+fi
+
+# to use a gp-file uncomment this line and replace default.gp with you own pg-file
+#echo "load 'default.gp'" | gnuplot
